@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SecuritySetting;
 use Illuminate\Support\Str;
 
 return [
@@ -212,6 +213,7 @@ return [
     |
     */
 
+    // Security Settings
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
 
 ];

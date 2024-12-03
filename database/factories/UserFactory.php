@@ -6,39 +6,69 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $roles = ['admin', 'user'];
+        $domains = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'];
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->userName() . '@' . $this->faker->randomElement($domains),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'), // Default password for all users
             'remember_token' => Str::random(10),
+            'role' => $this->faker->randomElement($roles),
+            'is_active' => $this->faker->boolean(80), // 80% chance of being active
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => function (array $attributes) {
+                return $this->faker->dateTimeBetween($attributes['created_at'], 'now');
+            },
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
+    public function configure()
+    {
+        return $this->afterCreating(function ($user) {
+            $user->profile()->create([
+                'phone' => fake()->phoneNumber(),
+                'bio' => fake()->paragraphs(2, true),
+                'job_title' => fake()->jobTitle(),
+                'department' => fake()->randomElement(['IT', 'HR', 'Finance', 'Marketing', 'Operations']),
+                'location' => fake()->city() . ', ' . fake()->country(),
+                'timezone' => fake()->randomElement(\DateTimeZone::listIdentifiers()),
+                'notification_preferences' => [
+                    'email' => fake()->boolean(70),
+                    'browser' => fake()->boolean(60),
+                ],
+                'theme_preferences' => [
+                    'darkMode' => fake()->boolean(40),
+                    'compactMode' => fake()->boolean(30),
+                ],
+            ]);
+        });
+    }
+
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'admin',
+            'is_active' => true,
+        ]);
+    }
+
+    public function user(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'user',
         ]);
     }
 }
