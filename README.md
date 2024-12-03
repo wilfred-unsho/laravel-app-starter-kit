@@ -1,4 +1,4 @@
-# Nexus Admin Panel - Laravel Content Management System
+# Nexus Admin Panel - Laravel Application Starter Kit
 
 A powerful, modern, and extensible Laravel-based content management system designed for enterprise content management, digital publishing, and system administration.
 
@@ -9,7 +9,7 @@ A powerful, modern, and extensible Laravel-based content management system desig
 
 ## Overview
 
-Nexus Admin Panel is a comprehensive content management system built with Laravel 11 and React. It features an intuitive admin interface, advanced RBAC, media management, and a powerful blogging platform, making it ideal for enterprises and digital publishers.
+Nexus Admin Panel is a comprehensive content management system built with Laravel 11 and React with Inertia. It features an intuitive admin interface, advanced RBAC, media management, and a powerful blogging platform, making it ideal for enterprises and digital publishers.
 
 ## Features
 
