@@ -1,66 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Nexus Admin Panel - Laravel Content Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A powerful, modern, and extensible Laravel-based content management system designed for enterprise content management, digital publishing, and system administration.
 
-## About Laravel
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue)
+![Laravel Version](https://img.shields.io/badge/Laravel-11-red)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Nexus Admin Panel is a comprehensive content management system built with Laravel 11 and React. It features an intuitive admin interface, advanced RBAC, media management, and a powerful blogging platform, making it ideal for enterprises and digital publishers.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+### Core System
+- 🔐 Role-Based Access Control (RBAC)
+- Role management
+- Permission management
+- User-role assignments
+- Role-based menu visibility
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 👥 Advanced User Management
+- Bulk actions
+- User export
+- Activity logging
+- Password policies
+- User profiles
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 🛡️ Security Features
+- Two-factor authentication
+- IP whitelist/blacklist
+- Session management
+- Security logs
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Content Management
+- 📝 Page Builder
+- Drag & drop interface
+- Custom blocks
+- Templates
+- Version history
 
-## Laravel Sponsors
+- 📸 Media Management
+- File upload system
+- Image optimization
+- Gallery view
+- File categorization
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- 📰 Advanced Blogging
+- Rich text editor
+- Content scheduling
+- Multi-author support
+- Version control
+- SEO tools
 
-### Premium Partners
+### System Tools
+- ⚙️ System Settings
+- Site configuration
+- Email settings
+- Theme customization
+- Cache controls
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- 📊 Analytics & Reporting
+- Dashboard widgets
+- Custom reports
+- Data visualization
+- Export options
 
-## Contributing
+## Requirements
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- PHP 8.2 or higher
+- MySQL 8.0+ or PostgreSQL 13+
+- Node.js 18+
+- Composer 2+
 
-## Code of Conduct
+## Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Clone the repository
+```bash
+git clone https://github.com/wilfred-unsho/laravel-app-starter-kit.git
+cd nexus-admin-panel
 
-## Security Vulnerabilities
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+npm install
 
-## License
+cp .env.example .env
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+php artisan key:generate
+
+npm run build
+
+php artisan serve
+
+npm run dev
+
+npm run watch
+
+Architecture
+
+├── app
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   └── Admin
+│   │   ├── Middleware
+│   │   └── Requests
+│   ├── Services
+│   ├── Repositories
+│   └── Models
+├── resources
+│   └── js
+│       ├── Components
+│       │   └── Admin
+│       ├── Layouts
+│       └── Pages
+│           └── Admin
+└── routes
+
+
+Contributing
+
+Fork the project
+Create your feature branch (git checkout -b feature/AmazingFeature)
+Commit your changes (git commit -m 'Add some AmazingFeature')
+Push to the branch (git push origin feature/AmazingFeature)
+Open a Pull Request
+
+Credits
+
+Wilfred
+All Contributors
+
+License
+The MIT License (MIT). Please see License File for more information.
+
+
