@@ -14,10 +14,19 @@ Nexus Admin Panel is a comprehensive content management system built with Larave
 <h2>Screenshots</h2>
 <h3>Dashboard</h3>
 
+![dashboard1](https://github.com/user-attachments/assets/a94de958-5137-405f-8520-9284b4dcf2f2)
 
+<h3>User Management</h3>
+![user-managment](https://github.com/user-attachments/assets/e636a3d3-2c20-487b-bfa0-5a62833151f9)
 
 <h3>Media Manager</h3>
+![media-manager](https://github.com/user-attachments/assets/f745fb66-8c69-4eca-8b30-b8758607f37b)
 
+<h3>Media Categories</h3>
+![media-categories](https://github.com/user-attachments/assets/206750e1-017c-4d8a-87e0-7787d83c6628)
+
+<h3>Security Dashboard</h3>
+![security-dashboard](https://github.com/user-attachments/assets/05dfe588-6151-4d78-a86a-873acba3fac0)
 
 
 ## Features
