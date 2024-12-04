@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Blog\AnalyticsController;
+use App\Http\Controllers\Admin\Blog\CategoryController;
+use App\Http\Controllers\Admin\Blog\CommentController;
+use App\Http\Controllers\Admin\Blog\PostController;
+use App\Http\Controllers\Admin\Blog\TagController;
 use App\Http\Controllers\Admin\IpRestrictionController;
 use App\Http\Controllers\Admin\LoginAttemptController;
 use App\Http\Controllers\Admin\MediaCategoryController;
@@ -19,6 +24,7 @@ use App\Http\Controllers\Admin\TwoFactorController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserProfileController;
 use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\Blog\SubscriptionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -167,6 +173,60 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::resource('page-templates', PageTemplateController::class);
 
 
+        // Blog Routes
+        // Blog Management Routes
+        Route::prefix('blog')->name('blog.')->middleware('permission:manage-blog')->group(function () {
+            // Analytics
+            Route::get('analytics', [AnalyticsController::class, 'index'])
+                ->name('analytics')
+                ->middleware('permission:view-blog-analytics');
+
+            // Posts Management
+            Route::resource('posts', PostController::class)
+                ->middleware('permission:manage-posts');
+            Route::post('posts/{post}/restore', [PostController::class, 'restore'])
+                ->name('posts.restore')
+                ->middleware('permission:manage-posts');
+            Route::post('posts/{post}/publish', [PostController::class, 'publish'])
+                ->name('posts.publish')
+                ->middleware('permission:publish-posts');
+
+            // Categories Management
+            Route::resource('categories', CategoryController::class)
+                ->middleware('permission:manage-categories');
+            Route::post('categories/reorder', [CategoryController::class, 'reorder'])
+                ->name('categories.reorder')
+                ->middleware('permission:manage-categories');
+
+            // Tags Management
+            Route::resource('tags', TagController::class)
+                ->middleware('permission:manage-tags');
+            Route::post('tags/bulk-delete', [TagController::class, 'bulkDestroy'])
+                ->name('tags.bulk-destroy')
+                ->middleware('permission:manage-tags');
+
+            // Comments Management
+            Route::resource('comments', CommentController::class)
+                ->only(['index', 'update', 'destroy'])
+                ->middleware('permission:manage-comments');
+            Route::post('comments/{comment}/approve', [CommentController::class, 'approve'])
+                ->name('comments.approve')
+                ->middleware('permission:moderate-comments');
+            Route::post('comments/{comment}/reject', [CommentController::class, 'reject'])
+                ->name('comments.reject')
+                ->middleware('permission:moderate-comments');
+            Route::post('comments/bulk-approve', [CommentController::class, 'bulkApprove'])
+                ->name('comments.bulk-approve')
+                ->middleware('permission:moderate-comments');
+            Route::post('comments/bulk-reject', [CommentController::class, 'bulkReject'])
+                ->name('comments.bulk-reject')
+                ->middleware('permission:moderate-comments');
+            Route::post('comments/{comment}/spam', [CommentController::class, 'markAsSpam'])
+                ->name('comments.spam')
+                ->middleware('permission:moderate-comments');
+        });
+
+
         // Settings
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
     });
@@ -184,5 +244,13 @@ Route::prefix('admin/roles')->name('admin.roles.')->middleware(['auth', 'verifie
     Route::post('/{role}/sync-permissions', [RoleController::class, 'syncPermissions'])->name('sync-permissions');
 });
 
+
+// Blog Subscription Routes
+Route::middleware(['auth'])->prefix('blog')->name('blog.')->group(function () {
+    Route::post('subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+    Route::get('unsubscribe', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+    Route::get('preferences', [SubscriptionController::class, 'preferences'])->name('preferences');
+    Route::post('preferences', [SubscriptionController::class, 'updatePreferences'])->name('preferences.update');
+});
 
 require __DIR__.'/auth.php';

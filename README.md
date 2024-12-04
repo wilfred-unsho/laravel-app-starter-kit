@@ -11,6 +11,9 @@ A powerful, modern, and extensible Laravel-based content management system desig
 
 Nexus Admin Panel is a comprehensive content management system built with Laravel 11 and React with Inertia. It features an intuitive admin interface, advanced RBAC, media management, and a powerful blogging platform, making it ideal for enterprises and digital publishers.
 
+<h3>Screenshots</h3>
+![Dashbaord](images/dashboard.png)
+
 ## Features
 
 ### Core System

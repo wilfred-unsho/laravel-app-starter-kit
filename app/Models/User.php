@@ -74,4 +74,37 @@ class User extends Authenticatable
             }
         });
     }
+
+    public function blogSubscriptions()
+    {
+        return $this->hasMany(BlogSubscription::class);
+    }
+
+    public function subscribeToBlog(array $preferences = [])
+    {
+        return $this->blogSubscriptions()->create(array_merge([
+            'notify_new_posts' => true,
+            'notify_comments' => true,
+            'notify_updates' => true
+        ], $preferences));
+    }
+
+    public function subscribeToPost(Post $post, array $preferences = [])
+    {
+        return $this->blogSubscriptions()->create(array_merge([
+            'post_id' => $post->id,
+            'notify_comments' => true,
+            'notify_updates' => true
+        ], $preferences));
+    }
+
+    public function unsubscribeFromBlog()
+    {
+        return $this->blogSubscriptions()->whereNull('post_id')->delete();
+    }
+
+    public function unsubscribeFromPost(Post $post)
+    {
+        return $this->blogSubscriptions()->where('post_id', $post->id)->delete();
+    }
 }

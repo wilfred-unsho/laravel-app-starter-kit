@@ -64,6 +64,38 @@ return [
         ]
     ],
     [
+        'title' => 'Blog',
+        'icon' => 'BookOpen',
+        'permission' => 'manage-blog',
+        'submenu' => [
+            [
+                'title' => 'Dashboard',
+                'route' => 'admin.blog.analytics',
+                'permission' => 'view-blog-analytics'
+            ],
+            [
+                'title' => 'Posts',
+                'route' => 'admin.blog.posts.index',
+                'permission' => 'manage-posts'
+            ],
+            [
+                'title' => 'Categories',
+                'route' => 'admin.blog.categories.index',
+                'permission' => 'manage-categories'
+            ],
+            [
+                'title' => 'Tags',
+                'route' => 'admin.blog.tags.index',
+                'permission' => 'manage-tags'
+            ],
+            [
+                'title' => 'Comments',
+                'route' => 'admin.blog.comments.index',
+                'permission' => 'manage-comments'
+            ]
+        ]
+    ],
+    [
         'title' => 'Security',
         'icon' => 'Shield',
         'permission' => 'manage-security',

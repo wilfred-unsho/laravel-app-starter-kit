@@ -28,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => CheckPermission::class,
             'role' => CheckRole::class,
             'check.ip' => CheckIpRestrictions::class,
+            'blog.permission' => \App\Http\Middleware\CheckBlogPermissions::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
