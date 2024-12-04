@@ -13,11 +13,11 @@ Nexus Admin Panel is a comprehensive content management system built with Larave
 
 <h2>Screenshots</h2>
 <h3>Dashboard</h3>
-![Dashbaord](images/dashboard.png)
+
 
 
 <h3>Media Manager</h3>
-![Media Manager](images/media-manager.png)
+
 
 
 ## Features
